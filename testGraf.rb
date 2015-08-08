@@ -6,7 +6,6 @@ class TestGrafo < Test::Unit::TestCase
 	def test_Vertice
 		g = Grafo.new
 		v = g.inserirVertice(:v1, 1)
-		p g
 		assert_equal(1, g.vertices[0].valor)
 	end
 
@@ -15,11 +14,32 @@ class TestGrafo < Test::Unit::TestCase
 		v = g.inserirVertice(:v1, 1)
 		v2 = g.inserirVertice(:v2, 20)
 		g.inserirAresta(v, v2, 20)
-		assert_equal(20, g.arestas[0].valor)
 		puts g.arestas[0].v1.valor
 		assert_equal(1, g.arestas[0].v1.valor)
-		p g
 	end
+
+	def test_remove_Aresta
+		g = Grafo.new
+		v = g.inserirVertice(:v1, 1)
+		v2 = g.inserirVertice(:v2, 20)
+		a = g.inserirAresta(v, v2, 20)
+		assert_equal(20,  g.removeAresta(a))
+		assert_equal(nil, g.arestas[0])
+	end
+	def test_remove_vertice
+		g = Grafo.new
+		v = g.inserirVertice(:v1, 1)
+		v2 = g.inserirVertice(:v2, 20)
+		a = g.inserirAresta(v, v2, 20)
+		assert_equal(1, g.removeVertice(v))
+		puts g
+		assert_equal(20, g.vertices[0].valor)
+		assert_equal(nil, g.arestas[0])
+	end
+=begin
+=end
+
 
 end
 
+	
