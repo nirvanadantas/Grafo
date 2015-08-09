@@ -1,8 +1,11 @@
 class Vertice
 	attr_accessor :chave, :valor
 
-	def initialize(chave, valor)
-		@chave, @valor = chave.to_sym, valor		
+	@@cont = 0
+	def initialize(chave='v', valor)
+		@@cont += 1
+		@valor =  valor
+		@chave = "#{chave}#{@@cont}".to_sym
 	end
 	
 	def to_s

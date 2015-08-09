@@ -2,13 +2,13 @@
 require "./Vertice"
 require "./Aresta"
 class Grafo
-	attr_accessor :vertices, :arestas
+	attr_reader :vertices, :arestas
 
 	def initialize		
 		@vertices, @arestas = [], []
 	end
 
-	def inserirVertice(chave, valor)
+	def inserirVertice(chave = 'v', valor)
 		v = Vertice.new(chave, valor)
 		@vertices << v
 		v
@@ -54,7 +54,27 @@ class Grafo
 		nil
 	end
 
+	def substituir(x, valor)
+		if x.class == Vertice
+			for i in @vertices do
+				i.valor = valor if i==x
+			end
+		elsif x.class == Aresta
+			for i in @arestas do
+				i.valor = valor if i==x
+			end			
+		end
+	end
 
+	def ehadjacente(v1, v2)
+		for a in @arestas do
+			return true if a.v1 == v1 && a.v2 == v2
+		end
+		return false
+	end
+=begin
+	
+=end
 	def to_s
 		puts "Grafo: "
 		print "Vértices: {"
